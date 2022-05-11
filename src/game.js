@@ -361,6 +361,9 @@ function tick(time) {
       exportAvatar(state.avatarGroup).then(({ glb }) => {
         const blob = new Blob([glb], { type: "application/octet-stream" });
         const url = URL.createObjectURL(blob);
+        
+        // WOW: adding for magic sendn
+        window.parent.postMessage({model3d:{url:url,blob:blob}}, "*");
 
         if (!debugConfig.disableDownload) {
           const el = document.createElement("a");
